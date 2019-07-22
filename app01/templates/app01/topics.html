@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>topics</title>
+</head>
+<body>
+{% extends "app01/base.html" %}
+{% block content %}
+<p>主题：</p>
+<p>
+    <a href="{% url 'app01:new_topic' %}">添加一个新的主题：</a>
+</p>
+<ul>
+    {% for topic in topics %}
+    <li>
+        <a href="{% url 'app01:topic' topic.id %}">{{ topic }}</a>
+    </li>
+    {% empty %}
+    <li>还没有添加任何主题</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}
+</body>
+</html>
