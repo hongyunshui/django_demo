@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>topic</title>
+</head>
+<body>
+{% extends 'app01/base.html' %}
+{% block content %}
+<p>主题: {{ topic }}</p>
+<p>条目:</p>
+<a href="{% url 'app01:new_entry' topic.id %}">新增条目</a>
+<ul>
+    {% for entry in entries %}
+    <li>
+        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+        <p>{{ entry.text|linebreaks }}</p>
+        <a href="{% url 'app01:edit_entry' entry.id %}">修改条目</a>
+    </li>
+    {% empty %}
+    <li>
+        还没有添加任何条目
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
+</body>
+</html>
