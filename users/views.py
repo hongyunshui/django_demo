@@ -7,7 +7,7 @@ from django.urls import reverse
 
 
 def logout_view(request):
-    """"注销用户**"""
+    """"注销用户"""
     logout(request)
     return HttpResponseRedirect(reverse('app01:index'))
 

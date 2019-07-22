@@ -1,4 +1,4 @@
-"""为应用程序users 定义URL模式**"""
+"""为应用程序users定义URL模式"""
 from django.conf.urls import url
 from django.urls import path, include
 # from django.contrib.auth import login

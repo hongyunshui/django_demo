@@ -10,7 +10,7 @@
 <form method="post" action="{% url 'users:register' %}">
 {% csrf_token %}
 {{ form.as_p }}
-<button name="submit">提 交</button>
+<button name="submit">提交</button>
 <input type="hidden" name="next" value="{% url 'app01:index' %}" />
 </form>
 {% endblock content %}
