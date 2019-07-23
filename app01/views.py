@@ -3,8 +3,21 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 
+
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
+
+
+def no_own_no_use(f):
+    """此函数用做禁止非拥有者操作数据的装饰器"""
+    def wrap(request, topic_id):
+        topic = Topic.objects.get(id=topic_id)
+        # 禁止非拥有者操作
+        if topic.owner != request.user:
+            raise Http404
+        else:
+            return f(request, topic_id)
+    return wrap
 
 
 def index(request):
@@ -23,12 +36,10 @@ def topics(request):
 
 
 @login_required
+@no_own_no_use1  # 禁止非拥有者访问主题
 def topic(request, topic_id):
     """显示单个主题及所有条目"""
     topic = Topic.objects.get(id=topic_id)
-    # 禁止非拥有者访问主题
-    if topic.owner != request.user:
-        raise Http404
     entries = topic.entry_set.order_by('date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'app01/topic.html', context)
@@ -55,12 +66,13 @@ def new_topic(request):
 
 
 @login_required
+@no_own_no_use
 def new_entry(request, topic_id):
     """在特定的主题中添加新条目"""
     topic = Topic.objects.get(id=topic_id)
     # 禁止其它用户恶意增加条目
-    if topic.owner != request.user:
-        raise Http404
+    # if topic.owner != request.user:
+    #     raise Http404
 
     if request.method != 'POST':
         # 未提交数据创建一个新表单
