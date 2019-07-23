@@ -7,7 +7,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import resolve_url
 
-from django_project01.app01.models import Topic
+from .models import Topic
 
 
 def user_passes_test(test_func, login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
@@ -76,7 +76,7 @@ def permission_required(perm, login_url=None, raise_exception=False):
     return user_passes_test(check_perms, login_url=login_url)
 
 
-def no_own_no_use1(f):
+def no_own_no_use(f):
     """此函数用做禁止非拥有者操作数据的装饰器"""
     def wrap(request, topic_id):
         topic = Topic.objects.get(id=topic_id)

@@ -6,18 +6,7 @@ from django.urls import reverse
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
-
-
-def no_own_no_use(f):
-    """此函数用做禁止非拥有者操作数据的装饰器"""
-    def wrap(request, topic_id):
-        topic = Topic.objects.get(id=topic_id)
-        # 禁止非拥有者操作
-        if topic.owner != request.user:
-            raise Http404
-        else:
-            return f(request, topic_id)
-    return wrap
+from .deco01 import no_own_no_use
 
 
 def index(request):
@@ -36,7 +25,7 @@ def topics(request):
 
 
 @login_required
-@no_own_no_use1  # 禁止非拥有者访问主题
+@no_own_no_use  # 禁止非拥有者访问主题
 def topic(request, topic_id):
     """显示单个主题及所有条目"""
     topic = Topic.objects.get(id=topic_id)
