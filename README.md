@@ -24,6 +24,8 @@
     python manage.py runserver ip:port
 
 ## 说明
-    此项目默认使用的是sqllite数据库
-    如果想清空数据请在虚拟环境中执行python manage.py flush命令，然后重新创建超级用户python manage.py createsuperuser
+    此项目默认使用的是sqllite数据库。可在navcat中查看表数据
+
+    如果想清空数据请在虚拟环境中执行python manage.py flush命令
+    然后重新创建超级用户python manage.py createsuperuser
 
