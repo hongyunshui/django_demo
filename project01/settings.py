@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'app01',
     # 'app01users',
     'users',
+    # 自动生成法律文书应用程序
+    'make_document',
 ]
 
 MIDDLEWARE = [

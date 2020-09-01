@@ -2,6 +2,7 @@
 <p>
     <a href="{% url 'app01:index' %}">学习日志</a>-
     <a href="{% url 'app01:topics' %}">主题</a>-
+    <a href="{% url 'make_document:index'%}">法律文书自动生成系统</a>-
     {% if user.is_authenticated %}
     你好, {{ user.username }}.
     <a href="{% url 'users:logout' %}">注销</a>
