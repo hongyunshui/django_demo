@@ -9,7 +9,7 @@ class NaturalPerson(models.Model):
     # 姓名
     name = models.CharField(max_length=50)
     # 性别
-    sex = models.BooleanField()
+    sex = models.CharField(max_length=5)
     # 民族
     nation = models.CharField(max_length=20)
     # 身份证号码
@@ -22,6 +22,7 @@ class NaturalPerson(models.Model):
     date_added = models.DateTimeField(auto_created=True)
     # 常用返回值
     return_inf = (name, sex, id, addr)
+
 
     def __str__(self):
         """返回人员信息"""

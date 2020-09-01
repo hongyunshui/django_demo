@@ -4,21 +4,13 @@ from . import views
 app_name = 'make_document'
 
 urlpatterns = [
-    # # 显示已制作案件页面
-    url('', views.index, name='index'),
-    #
-    # # 显示所有主题
-    # url('topics', views.topics, name='topics'),
-    #
-    # # 显示每个主题的详细情况
-    # url('topic/(?P<topic_id>\d+)', views.topic, name='topic'),
-    #
-    # # 用于添加新主题的网页
-    # url('new_topic/', views.new_topic, name='new_topic'),
-    #
-    # # 用于添加新条目的页面
-    # url('new_entry/(?P<topic_id>\d+)/', views.new_entry, name='new_entry'),
-    #
-    # # 用于修改条目的页面
-    # url('edit_entry/(?P<entry_id>\d+)/', views.edit_entry, name='edit_entry'),
+    # 显示已制作案件页面
+    url(r'^$', views.index, name='index'),
+
+    # 显示所有人员
+    url('dis_people', views.dis_people, name='dis_people'),
+
+    # 增加当事人
+    url('add_people', views.add_people, name='add_people'),
+
 ]

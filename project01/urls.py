@@ -18,7 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app01.urls', namespace='app01')),
+    path('app01/', include('app01.urls', namespace='app01')),
     path('users/', include('users.urls', namespace='users')),
     # 法律文书生成app
     path('make_document/', include('make_document.urls', namespace='make_document')),
