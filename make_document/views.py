@@ -1,6 +1,8 @@
-from django.shortcuts import render,HttpResponseRedirect,redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from .models import NaturalPerson
-from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .forms import NaturalPersonForm
+from django.urls import reverse
 # Create your views here.
 
 
@@ -34,12 +36,23 @@ def dis_people(request):
             # 当前页+5大于最大页数时
             pag_range = range(curuent_page_num-5, curuent_page_num+5)
     context = {'people': people, "pagintor": paginator, "current_Page": curuent_page,
-                 "current_Page_num": curuent_page_num, "pag_range": pag_range}
+                 "current_Page_num": curuent_page_num, "pag_range": pag_range,
+               'people_num': paginator.count, 'page_num': paginator.num_pages}
     return render(request, 'make_document/dis_people.html', context)
 
 
 def add_people(request):
     """增加当事人"""
+    if request.method != 'POST':
+        # 未提交数据，创建一个新表单
+        form = NaturalPersonForm()
+    else:
+        form = NaturalPersonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('make_document:dis_people'))
+    context = {'form': form}
+    return render(request, 'make_document/add_people.html', context)
 
 
 def del_people(request):
