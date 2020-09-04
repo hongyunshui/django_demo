@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>learning log</title>
-</head>
-<body>
 {% extends "app01/base.html" %}
+
+{% block header %}
+    <div class='jumbotron'>
+        <h1>追踪你的学习</h1>
+    </div>
+{% endblock header %}
 {% block content %}
-<p>学习笔记可以让你清楚自己的学习进度</p>
+    <h2>
+        <a href="{% url 'users:register' %}">注册用户</a> 进而创建你自己的学习日志，然后展示你学习的内容。
+    </h2>
+    <h2>
+        及时为你学习的主题做个标记（条目）
+    </h2>
 {% endblock content %}
-</body>
-</html>

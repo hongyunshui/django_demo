@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>注册</title>
-</head>
-<body>
 {% extends "app01/base.html" %}
+{% load bootstrap3 %}
+{% block header %}
+    <h2>注册新账户</h2>
+{% endblock header %}
 {% block content %}
-<form method="post" action="{% url 'users:register' %}">
-{% csrf_token %}
-{{ form.as_p }}
-<button name="submit">提交</button>
-<input type="hidden" name="next" value="{% url 'app01:index' %}" />
-</form>
+    <form method="post" action="{% url 'users:register' %}" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">注册</button>
+        {% endbuttons %}
+        <input type="hidden" name="next" value="{% url 'app01:index' %}"/>
+    </form>
 {% endblock content %}
-</body>
-</html>
