@@ -1,6 +1,4 @@
 from django.db import models
-
-
 # Create your models here.
 
 
@@ -9,7 +7,7 @@ class NaturalPerson(models.Model):
     # 姓名
     name = models.CharField(max_length=50)
     # 性别
-    sex = models.CharField(max_length=5)
+    sex = models.IntegerField(choices=((1, '男'), (2, '女')))
     # 民族
     nation = models.CharField(max_length=20)
     # 身份证号码
@@ -22,7 +20,6 @@ class NaturalPerson(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     # # 常用返回值
     # return_inf = (name, sex, id, addr)
-
 
     def __str__(self):
         """返回人员信息"""

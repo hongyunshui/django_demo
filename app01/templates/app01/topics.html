@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>topics</title>
-</head>
-<body>
 {% extends "app01/base.html" %}
+
+{% block header %}
+    <h1>主题</h1>
+{% endblock header %}
+
 {% block content %}
-<p>主题：</p>
-<p>
-    <a href="{% url 'app01:new_topic' %}">添加一个新的主题：</a>
-</p>
-<ul>
-    {% for topic in topics %}
-    <li>
-        <a href="{% url 'app01:topic' topic.id %}">{{ topic }}</a>
-    </li>
-    {% empty %}
-    <li>还没有添加任何主题</li>
-    {% endfor %}
-</ul>
-
-
+    <ul>
+        {% for topic in topics %}
+            <li>
+                <h3>
+                    <a href="{% url 'app01:topic' topic.id %}">{{ topic }}</a>
+                </h3>
+            </li>
+        {% empty %}
+            <li>没有添加任何主题</li>
+        {% endfor %}
+    </ul>
+    <span>共有{{ topics.count }}个主题</span>
+    <h3>
+        <a href="{% url 'app01:new_topic' %}">添加一个新的主题</a>
+    </h3>
 {% endblock content %}
-</body>
-</html>

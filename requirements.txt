@@ -1,3 +1,6 @@
 Django==2.2.3
+django-bootstrap3==12.1.0
 pytz==2019.1
+setuptools==47.1.1
 sqlparse==0.3.0
+wheel==0.34.2

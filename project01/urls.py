@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +23,6 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     # 法律文书生成app
     path('make_document/', include('make_document.urls', namespace='make_document')),
+    # 配置favicon.ico文件
+    path('favicon.ico/', RedirectView.as_view(url=r'static/favicon.ico')),
 ]

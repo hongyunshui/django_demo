@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TopicTest</title>
+    <title>文书管理</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -26,13 +26,9 @@
                     data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
             </button>
-            <a class="navbar-brand" href="{% url 'make_document:index' %}">
-                文书管理系统</a>
+            <a class="navbar-brand" href="{% url 'make_document:dis_people' %}">当事人信息概览</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'app01:topics' %}">主题</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li><a>您好, {{ user.username }}.</a></li>

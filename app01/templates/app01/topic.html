@@ -1,28 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>topic</title>
-</head>
-<body>
 {% extends 'app01/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h2>{{ topic }}</h2>
+{% endblock header %}
+
 {% block content %}
-<p>主题: {{ topic }}</p>
-<p>条目:</p>
-<a href="{% url 'app01:new_entry' topic.id %}">新增条目</a>
-<ul>
+    <p>
+        <a href="{% url 'app01:new_entry' topic.id %}">添加条目</a>
+    </p>
     {% for entry in entries %}
-    <li>
-        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-        <p>{{ entry.text|linebreaks }}</p>
-        <a href="{% url 'app01:edit_entry' entry.id %}">修改条目</a>
-    </li>
+        <div class="panel panel-default">
+            <h3>
+                {{ entry.date_added|date:'M d,Y H:i' }}
+                <small>
+                    <a href="{% url 'app01:edit_entry' entry.id %}">编辑条目</a>
+                </small>
+            </h3>
+        </div>
+        <div class="panel-body">
+            {{ entry.text|linebreaks }}
+        </div>
     {% empty %}
-    <li>
         还没有添加任何条目
-    </li>
     {% endfor %}
-</ul>
+    <div>
+        共有{{ entries.count }}个条目
+    </div>
 {% endblock content %}
-</body>
-</html>

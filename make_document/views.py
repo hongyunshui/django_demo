@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.contrib.auth.decorators import login_required
 from .models import NaturalPerson
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import NaturalPersonForm
@@ -11,6 +12,7 @@ def index(request):
     return render(request, 'make_document/index.html')
 
 
+@login_required()
 def dis_people(request):
     """显示当事人信息"""
     # 获取people的所有对象
@@ -41,6 +43,7 @@ def dis_people(request):
     return render(request, 'make_document/dis_people.html', context)
 
 
+@login_required()
 def add_people(request):
     """增加当事人"""
     if request.method != 'POST':
@@ -55,9 +58,11 @@ def add_people(request):
     return render(request, 'make_document/add_people.html', context)
 
 
+@login_required()
 def del_people(request):
     """删除当事人"""
 
 
+@login_required()
 def update_people(request):
     """修改当事人"""

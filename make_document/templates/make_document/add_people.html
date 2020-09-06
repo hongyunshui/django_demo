@@ -1,15 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>自然人</title>
-</head>
-<body >
-    <p>新增一个当事人</p>
-        <form action="{% url 'make_document:add_people' %}" method='POST'>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button name="submit">新增当事人</button>
-        </form>
-</body>
-</html>
+{% extends "make_document/base.html" %}
+{% block header %}
+    <h3>新增当事人</h3>
+{% endblock header %}
+
+{% block content %}
+    <form action="{% url 'make_document:add_people' %}" method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">确定</button>
+    </form>
+{% endblock content %}
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>自然人</title>#}
+{#</head>#}
+{#<body >#}
+{#    <p>新增一个当事人</p>#}
+{#        <form action="{% url 'make_document:add_people' %}" method='POST'>#}
+{#            {% csrf_token %}#}
+{#            {{ form.as_p }}#}
+{#            <button name="submit">新增当事人</button>#}
+{#        </form>#}
+{#</body>#}
+{#</html>#}

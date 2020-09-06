@@ -16,7 +16,7 @@
     7. 安装相关依赖
     pip install -r requirements.txt
     8.初始化数据
-    python manage.py makemigrations app01
+    python manage.py makemigrations app01/make_document
     python manage.py migrate
     9.创建超级用户
     python manage.py createsuperuser
