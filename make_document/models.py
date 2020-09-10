@@ -2,8 +2,44 @@ from django.db import models
 # Create your models here.
 
 
+class RecordsSource(models.Model):
+    """案卷来源码表"""
+    source_id = models.BigIntegerField(primary_key=True)
+    source_value = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.source_id
+
+
+class BaseRecordsTB(models.Model):
+    """案情表"""
+    # 案情表ID
+    record_id = models.BigIntegerField(primary_key=True)
+    # 案卷ID
+    archive_id = models.IntegerField()
+    # 案发时间
+    record_time= models.DateTimeField()
+    # 案发地址
+    # 案件类型
+    # 执法程序
+    # 所属区域
+    # 主办人
+    # 协办人
+    # 案情描述
+    # 案由
+    # 违责依据
+    # 违责
+    # 罚则依据
+    # 罚则
+    # 当事人类型
+    # 当事人编号
+
+    def __str__(self):
+        return self.record_id
+
+
 class NaturalPerson(models.Model):
-    """人员信息"""
+    """自然人信息"""
     # 姓名
     name = models.CharField(max_length=50)
     # 性别
