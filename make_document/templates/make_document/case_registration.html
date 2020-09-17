@@ -1,0 +1,13 @@
+{% extends "make_document/base.html" %}
+{% load bootstrap3 %}
+{% block header %}
+    <h2 hidden>登记新案件</h2>
+{% endblock header %}
+
+{% block content %}
+    <form action="{% url 'make_document:case_registration' %}" method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">确定</button>
+    </form>
+{% endblock content %}

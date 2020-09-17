@@ -4,37 +4,37 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth.decorators import login_required
 from .models import NaturalPerson
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import NaturalPersonForm, MysqlViewModelsForm
+from .forms import NaturalPersonForm
 from django.urls import reverse
-from .mysql_view_models import MysqlViewTest
+# from .mysql_view_models import MysqlViewTest
 # Create your views here.
 
 
-def case_registration(request):
-    """案件登记"""
-    if request.method != 'POST':
-        form = MysqlViewModelsForm()
-    else:
-        print('&&&&&&&&&&&&&&&&&&&&&&&&')
-        form = MysqlViewModelsForm(request.POST)
-        if form.is_valid():
-            form.save()
-        for a in form:
-            print('<<<<<<<<')
-            print(type(a))
-            print(a)
-            print(')))))))))')
-        print('**********************')
-        return HttpResponseRedirect(reverse('make_document:dis_people'))
-    context = {'form': form}
-    return render(request, 'make_document/case_registration.html', context)
+# def case_registration(request):
+#     """案件登记"""
+#     if request.method != 'POST':
+#         form = MysqlViewModelsForm()
+#     else:
+#         print('&&&&&&&&&&&&&&&&&&&&&&&&')
+#         form = MysqlViewModelsForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#         for a in form:
+#             print('<<<<<<<<')
+#             print(type(a))
+#             print(a)
+#             print(')))))))))')
+#         print('**********************')
+#         return HttpResponseRedirect(reverse('make_document:dis_people'))
+#     context = {'form': form}
+#     return render(request, 'make_document/case_registration.html', context)
 
 
-def mysql_view_test(request):
-    """视图显示测试"""
-    tempa = MysqlViewTest.objects.all()
-    data = serializers.serialize("json", tempa)
-    return HttpResponse(data)
+# def mysql_view_test(request):
+#     """视图显示测试"""
+#     tempa = MysqlViewTest.objects.all()
+#     data = serializers.serialize("json", tempa)
+#     return HttpResponse(data)
 
 
 def index(request):

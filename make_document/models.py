@@ -41,16 +41,25 @@ class BaseRecordsTB(models.Model):
     record_id = models.IntegerField()
     # 案卷ID
     archive_id = models.IntegerField()
+    # 案卷来源(1.执法巡查 2.群众举报 3.上级交办 4.专项任务 5.其它部门专办)
+    record_source = models.CharField(max_length=5)
     # 案发时间
     record_time = models.DateTimeField()
     # 案发地址
+    record_addr = models.CharField(max_length=500)
     # 案件类型
-    # 执法程序
-    # 所属区域
+    record_type = models.CharField(max_length=200)
+    # 执法程序（1.一般程序 2.简易程序 3. ）
+    record_program = models.CharField(max_length=5)
+    # 所属区域 (案件发生区域)
+    region = models.CharField(max_length=200)
     # 主办人
+    sponsor = models.ForeignKey('NaturalPerson', on_delete=models.CASCADE())
     # 协办人
     # 案情描述
+    record_discribtion = models.CharField(max_length=500)
     # 案由
+
     # 违责依据
     # 违责
     # 罚则依据
