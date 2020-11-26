@@ -13,6 +13,12 @@ urlpatterns = [
     # 增加当事人
     url('add_people', views.add_people, name='add_people'),
 
+    # 显示违法企业
+    url('dis_enterprises', views.dis_enterprises, name='dis_enterprises'),
+
+    # 增加违法企业
+    url('add_enterprise', views.add_enterprise, name='add_enterprise'),
+
     # # 视图测试
     # url('mysql_view_test', views.mysql_view_test, name='mysql_view_test'),
     #

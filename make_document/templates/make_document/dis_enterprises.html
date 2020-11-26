@@ -1,0 +1,90 @@
+{% extends "make_document/base.html" %}
+{% load bootstrap3 %}
+{% block header %}
+    <h2 hidden>违法企业信息概览</h2>
+{% endblock header %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <!-- Table -->
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th >统一社会会行用代码</th>
+                        <th >名称</th>
+                        <th>经营者/法人</th>
+                        <th>经营场所</th>
+                        <th>注册机关</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for enterprise in current_Page %}
+                        <tr>
+                            <td>{{ enterprise.id }}</td>
+                            <td>{{ enterprise.name }}</td>
+                            <td>{{ enterprise.adm }}</td>
+                            <td>{{ enterprise.addr }}</td>
+                            <td>{{ enterprise.registration_authority }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if not current_Page.has_previous %}<!--判断是否有上一页-->
+                            <li class="disable">
+                                <a href="?page=1">
+                                    <span>首页</span>
+                                </a>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">上一页</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="?page=1">
+                                    <span>首页</span>
+                                </a>
+                                <a href="?page={{ current_Page.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">上一页</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for page_range in pag_range %}
+                            {% if current_Page_num == page_range %}<!--判断遍历的页数是否为当前页，是就添加.avtive 背景色变蓝-->
+                                <li class="active"><a href="?page={{ page_range }}">{{ page_range }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ page_range }}">{{ page_range }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if not current_Page.has_next %}<!-- 判断是否最后一页 -->
+                            <li class="disable">
+                                <a href="?page={{ current_Page_num }}" aria-label="Next">
+                                    <span aria-hidden="true">下一页</span>
+                                </a>
+                                <a href="?page={{ page_num }}">末页</a>
+                                <span style="color: black">共有{{ enterprises_num }}条</span>
+                                <a href="{% url 'make_document:add_enterprise' %}">新增违法企业</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="?page={{ current_Page.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">下一页</span>
+                                </a>
+                                <a href="?page={{ page_num }}">末页</a>
+                                <span style="color: black">共有{{ enterprises_num }}条</span>
+                                <a href="{% url 'make_document:add_enterprise' %}">新增违法企业</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
