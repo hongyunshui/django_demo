@@ -28,7 +28,7 @@ class NaturalPerson(models.Model):
         return self.id
 
 
-class EnterpriseInf(models.Model):
+class Enterprise(models.Model):
     """企业信息"""
     # 统一社会信用代码/注册号
     id = models.CharField(max_length=18, validators=[RegexValidator(regex='^.{18}$', message='Length has to be 18', code='nomatch')],
