@@ -1,4 +1,4 @@
-Django==2.2.3
+Django==2.2.20
 django-bootstrap3==12.1.0
 pytz==2019.1
 setuptools==47.1.1
